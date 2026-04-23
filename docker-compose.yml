@@ -1,0 +1,27 @@
+services:
+  postgres:
+    image: postgres:17
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: asobi_smoke
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 3s
+      timeout: 3s
+      retries: 10
+
+  asobi:
+    image: ghcr.io/widgrensit/asobi_lua:latest
+    depends_on:
+      postgres:
+        condition: service_healthy
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./lua:/app/game:ro
+    environment:
+      ASOBI_DB_HOST: postgres
+      ASOBI_DB_NAME: asobi_smoke
+      ASOBI_DB_USER: postgres
+      ASOBI_DB_PASSWORD: postgres
