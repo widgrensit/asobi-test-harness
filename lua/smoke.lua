@@ -14,7 +14,7 @@
 -- Any test that does the following must pass:
 --   1. Register two players.
 --   2. Both queue matchmaker with mode "smoke".
---   3. Both receive match.joined within 2s.
+--   3. Both receive match.matched (NOT match.joined) within ~5s.
 --   4. Send match.input { move_x = 1 } once.
 --   5. Receive at least one match.state whose `players[self].x == 1`.
 

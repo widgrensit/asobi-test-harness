@@ -13,13 +13,15 @@ lockstep — same drift-prevention contract as `asobi_site_snippets`.
 - Send `session.connect` with `{ token }`. Receive `session.connected` with `{ player_id }`.
 - Pass criterion: `player_id` in reply matches `player_id` from REST register.
 
-## 2. Matchmaker → match.joined
+## 2. Matchmaker → match.matched
 
 - Register a second player and repeat the connect step.
 - Both clients send `matchmaker.add` with `{ mode: "smoke" }`.
 - Both receive `matchmaker.queued` within 2s.
-- Both receive `match.joined` within 5s (the smoke mode's `match_size = 2`).
-- Pass criterion: the `match_id` in both `match.joined` payloads is identical.
+- Both receive `match.matched` within ~5s (the smoke mode's `match_size = 2`; matchmaker ticks every 1s).
+- Pass criterion: the `match_id` in both `match.matched` payloads is identical.
+
+**Note**: matchmaker-formed matches fire `match.matched`, not `match.joined`. The `match.joined` event is reserved for explicit client-sent `match.join` messages. Several SDK docs had this wrong pre-2026-04-23; the smoke test catches it.
 
 ## 3. match.input → match.state
 
