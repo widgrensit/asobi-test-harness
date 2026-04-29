@@ -1,5 +1,6 @@
--- Game-mode manifest — maps matchmaker mode names to Lua scripts.
--- Keep this file minimal: the harness only ships one mode.
+-- Game-mode manifest — maps mode names to Lua scripts.
+-- Keep this file minimal: only modes used by SDK smoke / multiplayer-CT.
 return {
-    smoke = "smoke.lua"
+    smoke = "smoke.lua",
+    smoke_world = "smoke_world.lua"
 }

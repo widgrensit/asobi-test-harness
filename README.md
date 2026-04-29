@@ -6,8 +6,10 @@ A minimal, deterministic Asobi backend for validating SDKs in CI. Not a demo, no
 
 - `docker-compose.yml` — Postgres + `ghcr.io/widgrensit/asobi_lua:latest` on port 8080.
 - `lua/smoke.lua` — a deliberately boring 2-player match that echoes inputs into state. Tick counter increments; the match auto-finishes at tick 150.
-- `lua/manifest.lua` — registers the `smoke` mode with asobi_lua.
+- `lua/smoke_world.lua` — parallel world-mode fixture (entity-per-player, single zone). Used by the multiplayer-CT fanout property and any SDK world-mode smoke test.
+- `lua/config.lua` — registers the `smoke` and `smoke_world` modes with asobi_lua.
 - `scenarios/canonical.md` — the contract every SDK's smoke test must satisfy.
+- `multiplayer_ct/` — Erlang/PropEr CT suite that drives N concurrent clients into one `smoke_world` world and asserts zone-broadcast fanout. See `multiplayer_ct/README.md`.
 
 ## Running locally
 

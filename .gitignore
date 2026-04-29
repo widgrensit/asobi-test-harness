@@ -2,3 +2,9 @@
 .vscode/
 .DS_Store
 *.log
+
+# multiplayer_ct rebar3 build output (lock file is committed for reproducibility)
+multiplayer_ct/_build/
+multiplayer_ct/.rebar3/
+multiplayer_ct/rebar3.crashdump
+multiplayer_ct/logs/

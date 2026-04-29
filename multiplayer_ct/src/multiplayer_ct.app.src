@@ -1,0 +1,9 @@
+{application, multiplayer_ct, [
+    {description, "Multi-client property tests against asobi-test-harness"},
+    {vsn, "0.1.0"},
+    {registered, []},
+    {applications, [kernel, stdlib, gun, inets, ssl]},
+    {env, []},
+    {modules, []},
+    {licenses, ["Apache-2.0"]}
+]}.
